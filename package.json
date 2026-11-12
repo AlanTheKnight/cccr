@@ -3,11 +3,15 @@
   "displayName": "Claude Code Code Review",
   "description": "AI-powered Git code reviews using Claude Code",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlanTheKnight/cccr.git"
+  },
   "devDependencies": {
     "@types/bun": "^1.4.4",
     "@types/node": "^24",
-    "@types/vscode": "^1.146.0",
+    "@types/vscode": "^1.90.0",
     "@vscode/vsce": "^4.1.0"
   },
   "peerDependencies": {
@@ -71,7 +75,7 @@
       }
     ]
   },
-  "publisher": "local-developer",
+  "publisher": "MaksimGusev",
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc --watch -p ./",
