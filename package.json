@@ -1,0 +1,81 @@
+{
+  "name": "cccr",
+  "displayName": "Claude Code Code Review",
+  "description": "AI-powered Git code reviews using Claude Code",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "@types/node": "^24",
+    "@types/vscode": "^1.146.0",
+    "@vscode/vsce": "^4.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "claudeCodeReview.run",
+        "title": "Claude Code Review: Review Git Changes"
+      },
+      {
+        "command": "claudeCodeReview.rerun",
+        "title": "Claude Code Review: Run Last Review Again"
+      }
+    ],
+    "configuration": {
+      "title": "Claude Code Review",
+      "properties": {
+        "claudeCodeReview.claudePath": {
+          "type": "string",
+          "default": "claude",
+          "description": "Path to the Claude Code CLI. Leave as \"claude\" to find it on PATH and in the usual install locations."
+        },
+        "claudeCodeReview.model": {
+          "type": "string",
+          "default": "sonnet",
+          "description": "Model for reviews, such as \"sonnet\" or \"opus\". Empty uses your Claude Code default model."
+        },
+        "claudeCodeReview.maxBudgetUsd": {
+          "type": "number",
+          "default": 0,
+          "minimum": 0,
+          "description": "Stop a review once it has spent this many US dollars on API calls. 0 means no limit."
+        },
+        "claudeCodeReview.timeoutMinutes": {
+          "type": "number",
+          "default": 15,
+          "minimum": 1,
+          "description": "Give up on a review after this many minutes."
+        },
+        "claudeCodeReview.defaultBaseBranch": {
+          "type": "string",
+          "default": "main",
+          "description": "Branch suggested when reviewing a branch against its base."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "claudeCodeReview.run",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      }
+    ]
+  },
+  "publisher": "local-developer",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc --watch -p ./",
+    "check": "tsc --noEmit -p ./",
+    "package": "bun run compile && vsce package"
+  }
+}
